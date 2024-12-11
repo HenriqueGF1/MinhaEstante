@@ -50,4 +50,68 @@ public class UsuarioModel {
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LivrosUsuarioModel> livrosUsuarios = new HashSet<>();
+
+    public UUID getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(UUID idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public LocalDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public Set<FavoritoModel> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(Set<FavoritoModel> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public Set<AvaliacaoModel> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Set<AvaliacaoModel> avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    public Set<LivrosUsuarioModel> getLivrosUsuarios() {
+        return livrosUsuarios;
+    }
+
+    public void setLivrosUsuarios(Set<LivrosUsuarioModel> livrosUsuarios) {
+        this.livrosUsuarios = livrosUsuarios;
+    }
 }

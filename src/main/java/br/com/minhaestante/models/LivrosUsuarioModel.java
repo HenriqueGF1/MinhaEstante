@@ -1,9 +1,7 @@
 package br.com.minhaestante.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -39,4 +37,51 @@ public class LivrosUsuarioModel {
     @JoinColumn(name = "id_livro", nullable = false)
     private LivroModel livro;
 
+    public UUID getId_livro_usuario() {
+        return id_livro_usuario;
+    }
+
+    public void setId_livro_usuario(UUID id_livro_usuario) {
+        this.id_livro_usuario = id_livro_usuario;
+    }
+
+    public Boolean getLido() {
+        return lido;
+    }
+
+    public void setLido(Boolean lido) {
+        this.lido = lido;
+    }
+
+    public LocalDateTime getDtRegistro() {
+        return dtRegistro;
+    }
+
+    public void setDtRegistro(LocalDateTime dtRegistro) {
+        this.dtRegistro = dtRegistro;
+    }
+
+    public LocalDateTime getDtInativacao() {
+        return dtInativacao;
+    }
+
+    public void setDtInativacao(LocalDateTime dtInativacao) {
+        this.dtInativacao = dtInativacao;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public LivroModel getLivro() {
+        return livro;
+    }
+
+    public void setLivro(LivroModel livro) {
+        this.livro = livro;
+    }
 }

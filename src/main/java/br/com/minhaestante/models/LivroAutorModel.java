@@ -1,8 +1,6 @@
 package br.com.minhaestante.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -33,4 +31,43 @@ public class LivroAutorModel {
     @JoinColumn(name = "id_autor", nullable = false)
     private AutorModel autor;
 
+    public UUID getId_livro_autor() {
+        return id_livro_autor;
+    }
+
+    public void setId_livro_autor(UUID id_livro_autor) {
+        this.id_livro_autor = id_livro_autor;
+    }
+
+    public LocalDateTime getDtRegistro() {
+        return dtRegistro;
+    }
+
+    public void setDtRegistro(LocalDateTime dtRegistro) {
+        this.dtRegistro = dtRegistro;
+    }
+
+    public LocalDateTime getDtInativacao() {
+        return dtInativacao;
+    }
+
+    public void setDtInativacao(LocalDateTime dtInativacao) {
+        this.dtInativacao = dtInativacao;
+    }
+
+    public LivroModel getLivro() {
+        return livro;
+    }
+
+    public void setLivro(LivroModel livro) {
+        this.livro = livro;
+    }
+
+    public AutorModel getAutor() {
+        return autor;
+    }
+
+    public void setAutor(AutorModel autor) {
+        this.autor = autor;
+    }
 }

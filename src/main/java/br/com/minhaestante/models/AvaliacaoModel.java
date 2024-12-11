@@ -40,6 +40,54 @@ public class AvaliacaoModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_livro", nullable = false)
     private LivroModel livro;
+
+    public UUID getId_avaliacao() {
+        return id_avaliacao;
+    }
+
+    public void setId_avaliacao(UUID id_avaliacao) {
+        this.id_avaliacao = id_avaliacao;
+    }
+
+    public String getTexto_avaliacao() {
+        return texto_avaliacao;
+    }
+
+    public void setTexto_avaliacao(String texto_avaliacao) {
+        this.texto_avaliacao = texto_avaliacao;
+    }
+
+    public LocalDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public LocalDateTime getDt_inativacao() {
+        return dt_inativacao;
+    }
+
+    public void setDt_inativacao(LocalDateTime dt_inativacao) {
+        this.dt_inativacao = dt_inativacao;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public LivroModel getLivro() {
+        return livro;
+    }
+
+    public void setLivro(LivroModel livro) {
+        this.livro = livro;
+    }
 }
 
 

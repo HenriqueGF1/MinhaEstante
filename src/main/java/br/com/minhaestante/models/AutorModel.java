@@ -1,6 +1,5 @@
 package br.com.minhaestante.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -33,4 +32,44 @@ public class AutorModel {
     // RELACIONAMENTO
     @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LivroAutorModel> autoresLivros = new HashSet<>();
+
+    public UUID getId_autor() {
+        return id_autor;
+    }
+
+    public void setId_autor(UUID id_autor) {
+        this.id_autor = id_autor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public LocalDateTime getDt_inativacao() {
+        return dt_inativacao;
+    }
+
+    public void setDt_inativacao(LocalDateTime dt_inativacao) {
+        this.dt_inativacao = dt_inativacao;
+    }
+
+    public Set<LivroAutorModel> getAutoresLivros() {
+        return autoresLivros;
+    }
+
+    public void setAutoresLivros(Set<LivroAutorModel> autoresLivros) {
+        this.autoresLivros = autoresLivros;
+    }
 }

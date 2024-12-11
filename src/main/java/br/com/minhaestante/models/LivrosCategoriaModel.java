@@ -1,6 +1,5 @@
 package br.com.minhaestante.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -24,4 +23,28 @@ public class LivrosCategoriaModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria", nullable = false)
     private CategoriaModel categoria;
+
+    public UUID getId_livro_categoria() {
+        return id_livro_categoria;
+    }
+
+    public void setId_livro_categoria(UUID id_livro_categoria) {
+        this.id_livro_categoria = id_livro_categoria;
+    }
+
+    public LivroModel getLivro() {
+        return livro;
+    }
+
+    public void setLivro(LivroModel livro) {
+        this.livro = livro;
+    }
+
+    public CategoriaModel getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaModel categoria) {
+        this.categoria = categoria;
+    }
 }

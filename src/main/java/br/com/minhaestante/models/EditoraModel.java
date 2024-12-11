@@ -1,6 +1,5 @@
 package br.com.minhaestante.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -32,4 +31,44 @@ public class EditoraModel {
     // RELACIONAMENTO
     @OneToMany(mappedBy = "editora", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LivroModel> livros = new HashSet<>();
+
+    public UUID getId_editora() {
+        return id_editora;
+    }
+
+    public void setId_editora(UUID id_editora) {
+        this.id_editora = id_editora;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public LocalDateTime getDt_inativacao() {
+        return dt_inativacao;
+    }
+
+    public void setDt_inativacao(LocalDateTime dt_inativacao) {
+        this.dt_inativacao = dt_inativacao;
+    }
+
+    public Set<LivroModel> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(Set<LivroModel> livros) {
+        this.livros = livros;
+    }
 }

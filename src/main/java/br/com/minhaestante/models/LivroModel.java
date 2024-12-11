@@ -71,4 +71,124 @@ public class LivroModel {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
     private Set<FavoritoModel> favorito = new HashSet<>();
+
+    public UUID getId_livro() {
+        return id_livro;
+    }
+
+    public void setId_livro(UUID id_livro) {
+        this.id_livro = id_livro;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getCapa() {
+        return capa;
+    }
+
+    public void setCapa(String capa) {
+        this.capa = capa;
+    }
+
+    public Integer getQtdPaginas() {
+        return qtdPaginas;
+    }
+
+    public void setQtdPaginas(Integer qtdPaginas) {
+        this.qtdPaginas = qtdPaginas;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public LocalDateTime getDtPublicacao() {
+        return dtPublicacao;
+    }
+
+    public void setDtPublicacao(LocalDateTime dtPublicacao) {
+        this.dtPublicacao = dtPublicacao;
+    }
+
+    public LocalDateTime getDtRegistro() {
+        return dtRegistro;
+    }
+
+    public void setDtRegistro(LocalDateTime dtRegistro) {
+        this.dtRegistro = dtRegistro;
+    }
+
+    public LocalDateTime getDtInativacao() {
+        return dtInativacao;
+    }
+
+    public void setDtInativacao(LocalDateTime dtInativacao) {
+        this.dtInativacao = dtInativacao;
+    }
+
+    public Set<LivrosUsuarioModel> getLivrosUsuarios() {
+        return livrosUsuarios;
+    }
+
+    public void setLivrosUsuarios(Set<LivrosUsuarioModel> livrosUsuarios) {
+        this.livrosUsuarios = livrosUsuarios;
+    }
+
+    public Set<LivrosCategoriaModel> getLivrosCategorias() {
+        return livrosCategorias;
+    }
+
+    public void setLivrosCategorias(Set<LivrosCategoriaModel> livrosCategorias) {
+        this.livrosCategorias = livrosCategorias;
+    }
+
+    public Set<LivroAutorModel> getLivrosAutores() {
+        return livrosAutores;
+    }
+
+    public void setLivrosAutores(Set<LivroAutorModel> livrosAutores) {
+        this.livrosAutores = livrosAutores;
+    }
+
+    public EditoraModel getEditora() {
+        return editora;
+    }
+
+    public void setEditora(EditoraModel editora) {
+        this.editora = editora;
+    }
+
+    public Set<AvaliacaoModel> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Set<AvaliacaoModel> avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    public Set<FavoritoModel> getFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(Set<FavoritoModel> favorito) {
+        this.favorito = favorito;
+    }
 }

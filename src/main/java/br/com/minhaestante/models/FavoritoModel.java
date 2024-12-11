@@ -30,4 +30,36 @@ public class FavoritoModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_livro", nullable = false)
     private LivroModel livro;
+
+    public UUID getId_favorito() {
+        return id_favorito;
+    }
+
+    public void setId_favorito(UUID id_favorito) {
+        this.id_favorito = id_favorito;
+    }
+
+    public LocalDateTime getDtRegistro() {
+        return dtRegistro;
+    }
+
+    public void setDtRegistro(LocalDateTime dtRegistro) {
+        this.dtRegistro = dtRegistro;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public LivroModel getLivro() {
+        return livro;
+    }
+
+    public void setLivro(LivroModel livro) {
+        this.livro = livro;
+    }
 }

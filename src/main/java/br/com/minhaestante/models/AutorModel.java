@@ -31,9 +31,6 @@ public class AutorModel {
     private LocalDateTime dt_inativacao;
 
     // RELACIONAMENTO
-
-    // Autor e seus Livros
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
-    private Set<LivroAutorModel> autorLivros = new HashSet<>();
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivroAutorModel> autoresLivros = new HashSet<>();
 }

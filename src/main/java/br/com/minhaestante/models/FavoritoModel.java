@@ -2,7 +2,6 @@ package br.com.minhaestante.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(
         name = "favoritos",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_livro", "id_usuario"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_usuario", "id_livro"})
 )
 public class FavoritoModel {
 
@@ -22,15 +21,13 @@ public class FavoritoModel {
     private LocalDateTime dtRegistro;
 
     // RELACIONAMENTO
-    @NotNull(message = "O campo livro é obrigatório")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_livro", nullable = false)
-    private LivroModel livro;
-
-    @NotNull(message = "O campo usuario é obrigatório")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioModel usuario;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_livro", nullable = false)
+    private LivroModel livro;
 }

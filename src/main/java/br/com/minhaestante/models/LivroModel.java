@@ -11,7 +11,10 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "livros")
+@Table(
+        name = "livros",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_livro", "id_editora"})
+)
 public class LivroModel {
 
     @Id
@@ -47,27 +50,25 @@ public class LivroModel {
     private LocalDateTime dtInativacao;
 
     // RELACIONAMENTO
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivrosUsuarioModel> livrosUsuarios = new HashSet<>();
 
-    // Editora
-    @NotNull(message = "O campo editora é obrigatório")
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivrosCategoriaModel> livrosCategorias = new HashSet<>();
+
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivroAutorModel> livrosAutores = new HashSet<>();
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_editora", nullable = false)
     private EditoraModel editora;
 
-    // Favoritos
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
+    private Set<AvaliacaoModel> avaliacao = new HashSet<>();
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
     private Set<FavoritoModel> favorito = new HashSet<>();
-
-    // Livros e autores
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
-    private Set<LivroAutorModel> livroAutores = new HashSet<>();
-
-    // Categorias
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
-    private Set<LivrosCategoriaModel> livrosCategorias = new HashSet<>();
-
 }

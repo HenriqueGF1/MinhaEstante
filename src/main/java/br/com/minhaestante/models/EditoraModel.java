@@ -30,8 +30,6 @@ public class EditoraModel {
     private LocalDateTime dt_inativacao;
 
     // RELACIONAMENTO
-    @NotNull(message = "O campo livro é obrigatório")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "editora", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "editora", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LivroModel> livros = new HashSet<>();
 }

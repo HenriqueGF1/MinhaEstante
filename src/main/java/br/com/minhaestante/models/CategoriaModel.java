@@ -16,7 +16,7 @@ public class CategoriaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id_categoria", nullable = false, unique = true,  length = 16, columnDefinition = "BINARY(16)")
+    @Column(name = "id_categoria", nullable = false, unique = true, length = 16, columnDefinition = "BINARY(16)")
     private UUID id_categoria;
 
     @NotNull(message = "O campo nome categoria é obrigatório")
@@ -31,8 +31,6 @@ public class CategoriaModel {
     private LocalDateTime dt_inativacao;
 
     // RELACIONAMENTO
-    // Livros e categorias
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    private Set<LivroAutorModel> livrosCategoria = new HashSet<>();
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivrosCategoriaModel> livrosCategorias = new HashSet<>();
 }

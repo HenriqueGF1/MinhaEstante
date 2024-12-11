@@ -11,12 +11,12 @@ import java.util.UUID;
 @Entity
 @Table(
         name = "avaliacoes",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_livro", "id_usuario"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_avaliacao", "id_usuario"})
 )
 public class AvaliacaoModel {
 
     @Id
-    @Column(name = "id_avaliacao", nullable = false, unique = true,  length = 16, columnDefinition = "BINARY(16)")
+    @Column(name = "id_avaliacao", nullable = false, unique = true, length = 16, columnDefinition = "BINARY(16)")
     private UUID id_avaliacao;
 
     @NotNull(message = "O texto avaliação. é obrigatório")
@@ -31,17 +31,15 @@ public class AvaliacaoModel {
     private LocalDateTime dt_inativacao;
 
     // RELACIONAMENTO
-    @NotNull(message = "O campo livro é obrigatório")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_livro", nullable = false)
-    private LivroModel livro;
-
-    @NotNull(message = "O campo usuario é obrigatório")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioModel usuario;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_livro", nullable = false)
+    private LivroModel livro;
 }
 
 

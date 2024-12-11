@@ -17,7 +17,7 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id_usuario", nullable = false, unique = true,  length = 16, columnDefinition = "BINARY(16)")
+    @Column(name = "id_usuario", nullable = false, unique = true, length = 16, columnDefinition = "BINARY(16)")
     private UUID idUsuario;
 
     @NotNull(message = "O nome é obrigatório")
@@ -39,13 +39,15 @@ public class UsuarioModel {
     private LocalDateTime dataRegistro;
 
     // RELACIONAMENTO
-    // Livros Favoritos
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-    private Set<FavoritoModel> favorito = new HashSet<>();
+    private Set<FavoritoModel> favoritos = new HashSet<>();
 
-    // Avaliacaoes de Livros
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    // Esse mappedBy e o Objeto que eu crio no relacionamento da private SetAbaixo , nesse caso do Usuario na model de avaliacao
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private Set<AvaliacaoModel> avaliacao = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LivrosUsuarioModel> livrosUsuarios = new HashSet<>();
 }

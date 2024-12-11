@@ -7,8 +7,8 @@ import java.util.UUID;
 
 @Entity
 @Table(
-        name = "livros_autores",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_autor", "id_livro"})
+        name = "livros_categorias",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_livro", "id_categoria"})
 )
 public class LivrosCategoriaModel {
 
@@ -17,17 +17,11 @@ public class LivrosCategoriaModel {
     private UUID id_livro_categoria;
 
     // RELACIONAMENTO
-
-    // Categoria
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_categoria", nullable = false)
-    private CategoriaModel categoria;
-
-    // Livros
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_livro", nullable = false)
     private LivroModel livro;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria", nullable = false)
+    private CategoriaModel categoria;
 }

@@ -1,5 +1,6 @@
 package br.com.minhaestante.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +23,7 @@ public class EditoraModel {
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
+    @JsonProperty("dt_registro")
     @Column(name = "dt_registro", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime dataRegistro;
 

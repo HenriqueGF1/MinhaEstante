@@ -24,6 +24,7 @@ public class AvaliacaoModel {
     @Column(name = "texto_avaliacao", nullable = false, length = 255)
     private String texto_avaliacao;
 
+    @JsonProperty("dt_registro")
     @Column(name = "dt_registro", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime dataRegistro;
 

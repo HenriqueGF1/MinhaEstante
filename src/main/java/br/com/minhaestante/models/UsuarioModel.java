@@ -3,7 +3,7 @@ package br.com.minhaestante.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -17,24 +17,32 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id_usuario", nullable = false, unique = true, length = 16, columnDefinition = "BINARY(16)")
+    @Column(name = "id_usuario", nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID idUsuario;
 
-    @NotNull(message = "O nome é obrigatório")
+    @NotBlank(message = "O nome é obrigatório")
     @Size(min = 2, max = 255, message = "O nome deve ter entre 2 e 255 caracteres")
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
-    @NotNull(message = "O e-mail é obrigatório")
+    @NotBlank(message = "O e-mail é obrigatório")
     @Email(message = "O e-mail deve ser válido")
     @Column(name = "email", nullable = false, unique = true, length = 255)
     private String email;
 
-    @NotNull(message = "A senha é obrigatória")
+    @NotBlank(message = "A senha é obrigatória")
     @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
     @Column(name = "senha", nullable = false, length = 255)
     private String senha;
 
+    @PrePersist
+    public void prePersist() {
+        if (dataRegistro == null) {  // Só define se não estiver setado
+            this.dataRegistro = LocalDateTime.now();
+        }
+    }
+
+    @JsonProperty("dt_registro")
     @Column(name = "dt_registro", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime dataRegistro;
 
@@ -44,7 +52,6 @@ public class UsuarioModel {
     private Set<FavoritoModel> favoritos = new HashSet<>();
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    // Esse mappedBy e o Objeto que eu crio no relacionamento da private SetAbaixo , nesse caso do Usuario na model de avaliacao
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private Set<AvaliacaoModel> avaliacao = new HashSet<>();
 
@@ -113,5 +120,16 @@ public class UsuarioModel {
 
     public void setLivrosUsuarios(Set<LivrosUsuarioModel> livrosUsuarios) {
         this.livrosUsuarios = livrosUsuarios;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioModel{" +
+                "idUsuario=" + getIdUsuario() +
+                ", nome='" + getNome() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", senha='" + getSenha() + '\'' +
+                ", dataRegistro=" + getDataRegistro() +
+                '}';
     }
 }
